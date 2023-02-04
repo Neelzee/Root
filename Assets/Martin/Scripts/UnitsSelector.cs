@@ -64,7 +64,7 @@ public class UnitsSelector : MonoBehaviour
                     selectedUnitRTSList.Add(unitRTS);
                 }
 
-                Debug.Log(selectedUnitRTSList.Count);
+                // Debug.Log(selectedUnitRTSList.Count);
             }
         }
 
