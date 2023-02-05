@@ -24,53 +24,41 @@ public class WorldTiler : MonoBehaviour
                 var tempVal = tempMap[x, y];
 
                 var p = new Vector3Int(x, y, 0);
+
+                var (tm, tile) = WorldTiles.Instance.GetRandomGrasslandTile(heightVal);
                 
                 // Checks height, if low, its river/lake
                 if (heightVal <= WorldParameters.Instance.RiverHeight)
                 {
-                    WorldTiles.Instance.River.SetTile(p, WorldTiles.Instance.LakeTiles[heightVal]);
-                    continue;
+                    tm = WorldTiles.Instance.River;
+                    tile = WorldTiles.Instance.LakeTiles[heightVal];
                 }
+                else if (heightVal >= WorldParameters.Instance.MountainHeight) // If high, its mountain
+                {
+                    (tm, tile) = WorldTiles.Instance.GetRandomMountainTile(heightVal);
+                } 
+                else
+                    (tm, tile) = tempVal switch
+                    {
+                        < 1 =>
+                            // Checks moisture and temp
+                            // If temp is low, its snow, no matter what
+                            WorldTiles.Instance.GetRandomSnowTile(heightVal),
+                        // If temp is high, its desert, unless its at mountain height
+                        > 1 when heightVal < WorldParameters.Instance.MountainHeight => WorldTiles.Instance
+                            .GetRandomDesertTile(heightVal),
+                        _ => moistVal switch
+                        {
+                            < 1 => WorldTiles.Instance.GetRandomSavannaTile(heightVal),
+                            // High moisture, jungle time
+                            > 1 => WorldTiles.Instance.GetRandomJungleTile(heightVal),
+                            _ => (tm, tile)
+                        }
+                    };
 
-                // If high, its mountain
-                if (heightVal >= WorldParameters.Instance.MountainHeight)
-                {
-                    WorldTiles.Instance.Mountain.SetTile(p, WorldTiles.Instance.GetRandomMountainTile(heightVal));
-                    continue;
-                }
-
-                // Checks moisture and temp
-                // If temp is low, its snow, no matter what
-                if (tempVal < 1)
-                {
-                    WorldTiles.Instance.Snow.SetTile(p, WorldTiles.Instance.GetRandomSnowTile(heightVal));
-                    continue;
-                }
-                
-                // If temp is high, its desert, unless its at mountain height
-                if (tempVal > 1 && heightVal < WorldParameters.Instance.MountainHeight)
-                {
-                    WorldTiles.Instance.Desert.SetTile(p, WorldTiles.Instance.GetRandomDesertTile(heightVal));
-                    continue;
-                }
-                
-                // Now we only need to check extreme dryness and moistness
-                // Low moisture, savanna time :)
-                if (moistVal < 1)
-                {
-                    WorldTiles.Instance.Dry.SetTile(p, WorldTiles.Instance.GetRandomSavannaTile(heightVal));
-                    continue;
-                }
-                
-                // High moisture, jungle time
-                if (moistVal > 1)
-                {
-                    WorldTiles.Instance.Moist.SetTile(p, WorldTiles.Instance.GetRandomJungleTile(heightVal));
-                    continue;
-                }
-                
                 // Else is grassland
-                WorldTiles.Instance.Damp.SetTile(p, WorldTiles.Instance.GetRandomGrasslandTile(heightVal));
+                // Places tiles
+                tm.SetTile(p, tile);
             }
         }
     }

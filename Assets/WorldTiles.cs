@@ -35,13 +35,23 @@ public class WorldTiles : MonoBehaviour
 
 
     [Header("Tile Maps")]
-    [SerializeField] private Tilemap dry;
-    [SerializeField] private Tilemap damp;
-    [SerializeField] private Tilemap moist;
+    [SerializeField] private Tilemap lake;
+    [SerializeField] private Tilemap low;
+    [SerializeField] private Tilemap med;
+    [SerializeField] private Tilemap high;
     [SerializeField] private Tilemap river;
-    [SerializeField] private Tilemap mountain;
-    [SerializeField] private Tilemap snow;
-    [SerializeField] private Tilemap desert;
+    [SerializeField] private Tilemap lowDesert;
+    [SerializeField] private Tilemap medDesert;
+    [SerializeField] private Tilemap highDesert;
+    [SerializeField] private Tilemap lowMountain;
+    [SerializeField] private Tilemap medMountain;
+    [SerializeField] private Tilemap highMountain;
+    [SerializeField] private Tilemap lowSnow;
+    [SerializeField] private Tilemap medSnow;
+    [SerializeField] private Tilemap highSnow;
+    [SerializeField] private Tilemap mLowSnow;
+    [SerializeField] private Tilemap mMedSnow;
+    [SerializeField] private Tilemap mHighSnow;
 
     public Tile[] LakeTiles => lakeTiles;
 
@@ -70,20 +80,33 @@ public class WorldTiles : MonoBehaviour
 
     public Tile[] HighDesertTiles => highDesertTiles;
 
-    public Tilemap Dry => dry;
+    public Tilemap Lake => lake;
 
-    public Tilemap Damp => damp;
+    public Tilemap Low => low;
 
-    public Tilemap Moist => moist;
+    public Tilemap Med => med;
 
-    public Tilemap Desert => desert;
+    public Tilemap High => high;
+
+    public Tilemap LowMountain => lowMountain;
+
+    public Tilemap MedMountain => medMountain;
+
+    public Tilemap HighMountain => highMountain;
+
+    public Tilemap LowSnow => lowSnow;
+
+    public Tilemap MedSnow => medSnow;
+
+    public Tilemap HighSnow => highSnow;
+
+    public Tilemap MLowSnow => mLowSnow;
+
+    public Tilemap MMedSnow => mMedSnow;
+
+    public Tilemap MHighSnow => mHighSnow;
 
     public Tilemap River => river;
-
-    public Tilemap Mountain => mountain;
-
-    public Tilemap Snow => snow;
-
 
     private static WorldTiles _instance;
     
@@ -94,26 +117,26 @@ public class WorldTiles : MonoBehaviour
         _instance = this;
     }
 
-    public Tile GetRandomMountainTile(int heightVal)
+    public (Tilemap, Tile) GetRandomMountainTile(int heightVal)
     {
         bool plainTile = Random.Range(0, 100) / 100f <= WorldParameters.Instance.PlainTileChance;
         
         int max = WorldParameters.Instance.HeightMax; 
         if (max / (float) heightVal <= .3f)
         {
-            return plainTile ? lowMountainTiles[0] : lowMountainTiles[Random.Range(0, lowMountainTiles.Length)];
+            return (lowMountain, plainTile ? lowMountainTiles[0] : lowMountainTiles[Random.Range(0, lowMountainTiles.Length)]);
         }
 
         if (max / (float)heightVal >= .3f && max / (float)heightVal < .6f)
         {
-            return plainTile ? medMountainTiles[0] : medMountainTiles[Random.Range(0, medMountainTiles.Length)];
+            return (medMountain, plainTile ? medMountainTiles[0] : medMountainTiles[Random.Range(0, medMountainTiles.Length)]);
         }
         
-        return plainTile ? highMountainTiles[0] : highMountainTiles[Random.Range(0, highMountainTiles.Length)];
+        return (highMountain, plainTile ? highMountainTiles[0] : highMountainTiles[Random.Range(0, highMountainTiles.Length)]);
     }
 
 
-    public Tile GetRandomSnowTile(int heightVal)
+    public (Tilemap, Tile) GetRandomSnowTile(int heightVal)
     {
         bool plainTile = Random.Range(0, 100) / 100f <= WorldParameters.Instance.PlainTileChance;
         
@@ -122,98 +145,98 @@ public class WorldTiles : MonoBehaviour
             int max = WorldParameters.Instance.HeightMax;
             if (max / (float) heightVal <= .3f)
             {
-                return plainTile ? mLowSnowTiles[0] : mLowSnowTiles[Random.Range(0, mLowSnowTiles.Length)];
+                return (lowSnow, plainTile ? mLowSnowTiles[0] : mLowSnowTiles[Random.Range(0, mLowSnowTiles.Length)]);
             }
 
             if (max / (float)heightVal >= .3f && max / (float)heightVal < .6f)
             {
-                return plainTile ? mMedSnowTiles[0] : mMedSnowTiles[Random.Range(0, mMedSnowTiles.Length)];
+                return (medSnow, plainTile ? mMedSnowTiles[0] : mMedSnowTiles[Random.Range(0, mMedSnowTiles.Length)]);
             }
     
-            return plainTile ? mHighSnowTiles[0] : mHighSnowTiles[Random.Range(0, mHighSnowTiles.Length)];
+            return (highSnow, plainTile ? mHighSnowTiles[0] : mHighSnowTiles[Random.Range(0, mHighSnowTiles.Length)]);
         }
 
         {
             int max = WorldParameters.Instance.MountainHeight - 1;
             if (max / (float) heightVal <= .3f)
             {
-                return plainTile ? lowSnowTiles[0] : lowSnowTiles[Random.Range(0, lowSnowTiles.Length)];
+                return (mLowSnow, plainTile ? lowSnowTiles[0] : lowSnowTiles[Random.Range(0, lowSnowTiles.Length)]);
             }
 
             if (max / (float)heightVal >= .3f && max / (float)heightVal < .6f)
             {
-                return plainTile ? medSnowTiles[0] : medSnowTiles[Random.Range(0, medSnowTiles.Length)];
+                return (mMedSnow, plainTile ? medSnowTiles[0] : medSnowTiles[Random.Range(0, medSnowTiles.Length)]);
             }
         
-            return plainTile ? highSnowTiles[0] : highSnowTiles[Random.Range(0, highSnowTiles.Length)];
+            return (mHighSnow, plainTile ? highSnowTiles[0] : highSnowTiles[Random.Range(0, highSnowTiles.Length)]);
         }
     }
 
-    public TileBase GetRandomDesertTile(int heightVal)
+    public (Tilemap, Tile) GetRandomDesertTile(int heightVal)
     {
         bool plainTile = Random.Range(0, 100) / 100f <= WorldParameters.Instance.PlainTileChance;
         int max = WorldParameters.Instance.MountainHeight - 1;
         if (max / (float) heightVal <= .3f)
         {
-            return plainTile ? lowDesertTiles[0] : lowDesertTiles[Random.Range(0, lowDesertTiles.Length)];
+            return (lowDesert, plainTile ? lowDesertTiles[0] : lowDesertTiles[Random.Range(0, lowDesertTiles.Length)]);
         }
 
         if (max / (float)heightVal >= .3f && max / (float)heightVal < .6f)
         {
-            return plainTile ? medDesertTiles[0] : medDesertTiles[Random.Range(0, medDesertTiles.Length)];
+            return (medDesert, plainTile ? medDesertTiles[0] : medDesertTiles[Random.Range(0, medDesertTiles.Length)]);
         }
         
-        return plainTile ? highDesertTiles[0] : highDesertTiles[Random.Range(0, highDesertTiles.Length)];
+        return (highDesert, plainTile ? highDesertTiles[0] : highDesertTiles[Random.Range(0, highDesertTiles.Length)]);
     }
 
-    public Tile GetRandomSavannaTile(int heightVal)
+    public (Tilemap, Tile) GetRandomSavannaTile(int heightVal)
     {
         bool plainTile = Random.Range(0, 100) / 100f <= WorldParameters.Instance.PlainTileChance;
         int max = WorldParameters.Instance.MountainHeight - 1;
         if (max / (float) heightVal <= .3f)
         {
-            return plainTile ? lowSavannaTiles[0] : lowSavannaTiles[Random.Range(0, lowSavannaTiles.Length)];
+            return (low, plainTile ? lowSavannaTiles[0] : lowSavannaTiles[Random.Range(0, lowSavannaTiles.Length)]);
         }
 
         if (max / (float)heightVal >= .3f && max / (float)heightVal < .6f)
         {
-            return plainTile ? medSavannaTiles[0] : medSavannaTiles[Random.Range(0, medSavannaTiles.Length)];
+            return (med, plainTile ? medSavannaTiles[0] : medSavannaTiles[Random.Range(0, medSavannaTiles.Length)]);
         }
         
-        return plainTile ? highSavannaTiles[0] : highSavannaTiles[Random.Range(0, highSavannaTiles.Length)];
-    }
-    
-    public Tile GetRandomJungleTile(int heightVal)
-    {
-        bool plainTile = Random.Range(0, 100) / 100f <= WorldParameters.Instance.PlainTileChance;
-        int max = WorldParameters.Instance.MountainHeight - 1;
-        if (max / (float) heightVal <= .3f)
-        {
-            return plainTile ? lowJungleTiles[0] : lowJungleTiles[Random.Range(0, lowJungleTiles.Length)];
-        }
-
-        if (max / (float)heightVal >= .3f && max / (float)heightVal < .6f)
-        {
-            return plainTile ? medJungleTiles[0] : medJungleTiles[Random.Range(0, medJungleTiles.Length)];
-        }
-        
-        return plainTile ? highJungleTiles[0] : highJungleTiles[Random.Range(0, highJungleTiles.Length)];
+        return (high, plainTile ? highSavannaTiles[0] : highSavannaTiles[Random.Range(0, highSavannaTiles.Length)]);
     }
     
-    public Tile GetRandomGrasslandTile(int heightVal)
+    public (Tilemap, Tile) GetRandomJungleTile(int heightVal)
     {
         bool plainTile = Random.Range(0, 100) / 100f <= WorldParameters.Instance.PlainTileChance;
         int max = WorldParameters.Instance.MountainHeight - 1;
         if (max / (float) heightVal <= .3f)
         {
-            return plainTile ? lowGrassTiles[0] : lowGrassTiles[Random.Range(0, lowGrassTiles.Length)];
+            return (low, plainTile ? lowJungleTiles[0] : lowJungleTiles[Random.Range(0, lowJungleTiles.Length)]);
         }
 
         if (max / (float)heightVal >= .3f && max / (float)heightVal < .6f)
         {
-            return plainTile ? medGrassTiles[0] : medGrassTiles[Random.Range(0, medGrassTiles.Length)];
+            return (med, plainTile ? medJungleTiles[0] : medJungleTiles[Random.Range(0, medJungleTiles.Length)]);
         }
         
-        return plainTile ? highGrassTiles[0] : highGrassTiles[Random.Range(0, highGrassTiles.Length)];
+        return (high, plainTile ? highJungleTiles[0] : highJungleTiles[Random.Range(0, highJungleTiles.Length)]);
+    }
+    
+    public (Tilemap, Tile) GetRandomGrasslandTile(int heightVal)
+    {
+        bool plainTile = Random.Range(0, 100) / 100f <= WorldParameters.Instance.PlainTileChance;
+        int max = WorldParameters.Instance.MountainHeight - 1;
+        if (max / (float) heightVal <= .3f)
+        {
+            return (low, plainTile ? lowGrassTiles[0] : lowGrassTiles[Random.Range(0, lowGrassTiles.Length)]);
+        }
+
+        if (max / (float)heightVal >= .3f && max / (float)heightVal < .6f)
+        {
+            return (low, plainTile ? medGrassTiles[0] : medGrassTiles[Random.Range(0, medGrassTiles.Length)]);
+        }
+        
+        return (low, plainTile ? highGrassTiles[0] : highGrassTiles[Random.Range(0, highGrassTiles.Length)]);
     }
 }
