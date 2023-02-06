@@ -7,6 +7,51 @@ public static class World
 {
     private static bool _initialised;
 
+    private static int _maxHeight;
+    private static int _minHeight;
+    
+    private static int _maxTemp;
+    private static int _minTemp;
+    
+    private static int _maxMoist;
+    private static int _minMoist;
+
+    public static int MaxHeight
+    {
+        get => _maxHeight;
+        set => _maxHeight = value;
+    }
+
+    public static int MinHeight
+    {
+        get => _minHeight;
+        set => _minHeight = value;
+    }
+
+    public static int MaxTemp
+    {
+        get => _maxTemp;
+        set => _maxTemp = value;
+    }
+
+    public static int MinTemp
+    {
+        get => _minTemp;
+        set => _minTemp = value;
+    }
+
+    public static int MaxMoist
+    {
+        get => _maxMoist;
+        set => _maxMoist = value;
+    }
+
+    public static int MinMoist
+    {
+        get => _minMoist;
+        set => _minMoist = value;
+    }
+
     public static bool Initialised
     {
         get => _initialised;

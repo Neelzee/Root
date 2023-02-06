@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class WorldTiler : MonoBehaviour
@@ -25,39 +26,37 @@ public class WorldTiler : MonoBehaviour
 
                 var p = new Vector3Int(x, y, 0);
 
+
                 var (tm, tile) = WorldTiles.Instance.GetRandomGrasslandTile(heightVal);
-                
-                // Checks height, if low, its river/lake
-                if (heightVal <= WorldParameters.Instance.RiverHeight)
+                if (heightVal <= World.MinHeight + WorldParameters.Instance.LakeHeight)
                 {
-                    tm = WorldTiles.Instance.River;
-                    tile = WorldTiles.Instance.LakeTiles[heightVal];
+                    tm = WorldTiles.Instance.Lake;
+                    int v = heightVal >= WorldTiles.Instance.LakeTiles.Length
+                        ? WorldTiles.Instance.LakeTiles.Length - 1
+                        : heightVal;
+                    tile = WorldTiles.Instance.LakeTiles[v];
                 }
-                else if (heightVal >= WorldParameters.Instance.MountainHeight) // If high, its mountain
+                else if (heightVal >= World.MaxHeight - WorldParameters.Instance.MountainHeight)
                 {
                     (tm, tile) = WorldTiles.Instance.GetRandomMountainTile(heightVal);
+                }
+                else if (tempVal > 1) // Hot
+                {
+                    (tm, tile) = WorldTiles.Instance.GetRandomDesertTile(heightVal);
+                }
+                else if (tempVal < 1) // Cold
+                {
+                    (tm, tile) = WorldTiles.Instance.GetRandomSnowTile(heightVal);
+                }
+                else if (moistVal < 1) // Dry
+                {
+                    (tm, tile) = WorldTiles.Instance.GetRandomSavannaTile(heightVal);
+                }
+                else if (moistVal > 1) // Moist
+                {
+                    (tm, tile) = WorldTiles.Instance.GetRandomJungleTile(heightVal);
                 } 
-                else
-                    (tm, tile) = tempVal switch
-                    {
-                        < 1 =>
-                            // Checks moisture and temp
-                            // If temp is low, its snow, no matter what
-                            WorldTiles.Instance.GetRandomSnowTile(heightVal),
-                        // If temp is high, its desert, unless its at mountain height
-                        > 1 when heightVal < WorldParameters.Instance.MountainHeight => WorldTiles.Instance
-                            .GetRandomDesertTile(heightVal),
-                        _ => moistVal switch
-                        {
-                            < 1 => WorldTiles.Instance.GetRandomSavannaTile(heightVal),
-                            // High moisture, jungle time
-                            > 1 => WorldTiles.Instance.GetRandomJungleTile(heightVal),
-                            _ => (tm, tile)
-                        }
-                    };
-
-                // Else is grassland
-                // Places tiles
+                
                 tm.SetTile(p, tile);
             }
         }

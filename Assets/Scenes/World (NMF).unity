@@ -339,7 +339,7 @@ GameObject:
   - component: {fileID: 317433410}
   m_Layer: 0
   m_Name: Grid
-  m_TagString: Untagged
+  m_TagString: Grid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1775,11 +1775,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf3a26f1f08b2654e80b237904a72408, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  octaves: 3
-  amplitude: 8
-  frequency: 0.05
-  lacunarity: 2
-  persistence: 0.5
+  offset: {x: 69, y: 69}
+  magnification: 25
 --- !u!114 &1297765889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1792,11 +1789,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dcffe1ddc730944abfec5df71208318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  octaves: 3
-  amplitude: 8
-  frequency: 0.05
-  lacunarity: 2
-  persistence: 0.5
+  offset: {x: 69420, y: 42069}
+  magnification: 14
 --- !u!114 &1297765890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1809,11 +1803,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f4ac23839eed94ab36dea526614bc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  octaves: 3
-  amplitude: 8
-  frequency: 0.05
-  lacunarity: 2
-  persistence: 0.5
+  offset: {x: 420, y: 420}
+  magnification: 25
 --- !u!114 &1297765891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2053,6 +2044,23 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8f5b2ee09b92a9645ae7bea1dd27a4f5, type: 2}
   highDesertTiles:
   - {fileID: 11400000, guid: aa35ed34229767b49b1c326ff5c458ac, type: 2}
+  debugTiles:
+  - {fileID: 11400000, guid: f5224290713338944ac21ed370c54572, type: 2}
+  - {fileID: 11400000, guid: 1eb87cd60eba33142a5bb6a8d2954f8c, type: 2}
+  - {fileID: 11400000, guid: 0c8e524bb5c770742a2fbb4ad2ed2a81, type: 2}
+  - {fileID: 11400000, guid: a8f69ab0111456640bd2285e90bf2e7d, type: 2}
+  - {fileID: 11400000, guid: 83474e572ec60774e9e4487e4b6a72a2, type: 2}
+  - {fileID: 11400000, guid: 10cd3b8e69db8964aa63e37fc07ad6c7, type: 2}
+  - {fileID: 11400000, guid: 6d2894f7946f9874e9880913ef990da6, type: 2}
+  - {fileID: 11400000, guid: c3f721e024f3f974c94aab8897d99bda, type: 2}
+  - {fileID: 11400000, guid: 8abf39c66762a44438dbf9a61f8d57c6, type: 2}
+  - {fileID: 11400000, guid: c5c977abd1e3103499199d53d4f4e1bc, type: 2}
+  - {fileID: 11400000, guid: b724ffad688cf0f4b8676e83e9f150a4, type: 2}
+  - {fileID: 11400000, guid: 2399673d916a1d748a7fe9e283f42b9c, type: 2}
+  - {fileID: 11400000, guid: f0c37ea85cf3e5e4ba77ea0322b8a9a5, type: 2}
+  - {fileID: 11400000, guid: ba60ee32349854b4bae1d33ddf696d56, type: 2}
+  - {fileID: 11400000, guid: 6280bb2631e47cf4c99f1ff88926df25, type: 2}
+  - {fileID: 11400000, guid: 299bba59bd12bbf41ac075a3292b3a76, type: 2}
   lake: {fileID: 1844661692}
   low: {fileID: 962333213}
   med: {fileID: 650976917}
@@ -2084,10 +2092,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   worldSize: {x: 300, y: 300}
   plainTileChance: 1
-  riverWidth: 0
-  heightMax: 8
-  riverHeight: 3
-  mountainHeight: 6
+  lakeHeight: 2
+  mountainHeight: 2
 --- !u!1 &1685463246
 GameObject:
   m_ObjectHideFlags: 0
@@ -2496,6 +2502,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generateOnStart: 1
+  debugHeight: 0
+  debugTemp: 0
+  debugMoisture: 0
 --- !u!1 &2012196115
 GameObject:
   m_ObjectHideFlags: 0

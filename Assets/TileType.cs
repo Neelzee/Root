@@ -9,5 +9,7 @@ public enum TileType
     Savanna = 2,
     Jungle = 3,
     River = 4,
-    Mountain = 5
+    Mountain = 5,
+    Snow,
+    Desert
 }
