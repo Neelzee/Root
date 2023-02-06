@@ -1775,7 +1775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf3a26f1f08b2654e80b237904a72408, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: 69, y: 69}
+  offsetRange: {x: 420, y: 42069}
   magnification: 25
 --- !u!114 &1297765889
 MonoBehaviour:
@@ -1789,7 +1789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dcffe1ddc730944abfec5df71208318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: 69420, y: 42069}
+  offsetRange: {x: 420, y: 42069}
   magnification: 14
 --- !u!114 &1297765890
 MonoBehaviour:
@@ -1803,7 +1803,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f4ac23839eed94ab36dea526614bc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: 420, y: 420}
+  offsetRange: {x: 420, y: 42069}
   magnification: 25
 --- !u!114 &1297765891
 MonoBehaviour:

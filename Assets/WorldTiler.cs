@@ -33,7 +33,7 @@ public class WorldTiler : MonoBehaviour
                     tm = WorldTiles.Instance.Lake;
                     int v = heightVal >= WorldTiles.Instance.LakeTiles.Length
                         ? WorldTiles.Instance.LakeTiles.Length - 1
-                        : heightVal;
+                        : heightVal < 0 ? 0 : heightVal;
                     tile = WorldTiles.Instance.LakeTiles[v];
                 }
                 else if (heightVal >= World.MaxHeight - WorldParameters.Instance.MountainHeight)
