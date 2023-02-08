@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
@@ -23,9 +24,17 @@ public class TreePlacement : MonoBehaviour
         _currentTree = newTree;
     }
 
-    private bool CanPlace()
+    private GameObject CheckForTree(Vector3Int cellPos)
     {
-        return false;
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            var child = transform.GetChild(i).gameObject;
+            if (child.name == "Tree: " + cellPos)
+            {
+                return child;
+            }
+        }
+        return null;
     }
     
     private void Update()
@@ -51,16 +60,28 @@ public class TreePlacement : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 var cellPos = tilemap.WorldToCell(holdPos);
-                _currentTree.transform.position = tilemap.GetCellCenterWorld(cellPos);
-                tilemap.SetTile(cellPos, _currentTree.GetComponent<TreeInfo>().getTile());
-                _currentTree.name = "Tree: " + cellPos;
-                _currentTree.GetComponent<SpriteRenderer>().enabled = false;
-                _currentTree = null;
+                if (CheckForTree(cellPos) == null)
+                {
+                    _currentTree.transform.position = tilemap.GetCellCenterWorld(cellPos);
+                    tilemap.SetTile(cellPos, _currentTree.GetComponent<TreeInfo>().getTile());
+                    _currentTree.name = "Tree: " + cellPos;
+                    _currentTree.GetComponent<SpriteRenderer>().enabled = false;
+                    _currentTree = null;   
+                }
             }
 
             if (Input.GetKeyDown(KeyCode.Mouse1))
             {
                 Destroy(_currentTree);
+            }
+        }
+        else
+        {   
+            // Checks if the player clicks on a tile with a tree
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                var cellPos = tilemap.WorldToCell(holdPos);
+                GameObject selectedTree = CheckForTree(cellPos);
             }
         }
     }
