@@ -4,7 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - Grid
+=======
+  - Forest
+>>>>>>> main
   layers:
   - Default
   - TransparentFX
