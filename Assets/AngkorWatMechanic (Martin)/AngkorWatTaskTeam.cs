@@ -29,6 +29,7 @@ public class AngkorWatTaskTeam : MonoBehaviour
             if (target != null)
             {
                 takingOver = true;
+                // TODO: Increase the "Angkor Wat apocalypse alertness" of the human population
             }
         }
 
