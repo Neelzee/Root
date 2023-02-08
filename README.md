@@ -3,6 +3,16 @@
 A game of woodland might...
 
 
+## Gameplay
+- Resources:
+sunlight, water, fertilizer (neutriants)
+
+- Attacks:
+Specific tiles
+
+- Take over cities
+
+
 ## How to code
 
 1. Create a new branch for the thing you're implementing, example: "AddingEnemyAI"
