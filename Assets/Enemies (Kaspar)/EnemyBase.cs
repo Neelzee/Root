@@ -13,7 +13,7 @@ public class EnemyBase : MonoBehaviour
     
     private int _currentEnemies;
 
-    public event EventHandler CallEnemiesSpawned;
+    public event EventHandler<EnemyCallEventArgs> CallEnemiesSpawned;
     
     private void Start()
     {
@@ -49,6 +49,37 @@ public class EnemyBase : MonoBehaviour
 
     private void AllEnemiesSpawned()
     {
-        CallEnemiesSpawned?.Invoke(this, EventArgs.Empty);
+        CallEnemiesSpawned?.Invoke(this, new EnemyCallEventArgs(FindClosestForest()));
     }
+    
+    private GameObject FindClosestForest()
+    {
+        GameObject[] forests = GameObject.FindGameObjectsWithTag("Forest");
+        GameObject closestForest = null;
+        float distance = Mathf.Infinity;
+        Vector3 position = transform.position;
+        
+        foreach (GameObject forest in forests)
+        {
+            Vector3 diff = forest.transform.position - position;
+            float curDistance = diff.sqrMagnitude;
+            if (curDistance < distance)
+            {
+                closestForest = forest;
+                distance = curDistance;
+            }
+        }
+
+        return closestForest;
+    }
+}
+
+public class EnemyCallEventArgs : EventArgs
+{
+    public EnemyCallEventArgs(GameObject forest)
+    {
+        Forest = forest;
+    }
+    
+    public GameObject Forest { get; set; }
 }
