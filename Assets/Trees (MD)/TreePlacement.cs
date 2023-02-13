@@ -23,7 +23,7 @@ public class TreePlacement : MonoBehaviour
     {
         
     }
-    private void HoldTree(GameObject obj = null)
+    public void HoldTree(GameObject obj = null)
     {
         var newTree = Instantiate(obj, transform);
         _currentTree = newTree;
