@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Player_Control;
+using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -8,25 +9,21 @@ using UnityEngine;
 /// </summary>
 public static class PlayerControls
 {
+    private const string FileName = "keybinds.json";
+    
     private static Dictionary<PlayerAction, KeyCode> _keyBinds = new();
 
     public static Dictionary<PlayerAction, KeyCode> KeyBinds => _keyBinds;
 
     /// <summary>
-    /// TODO: Implement
     /// Loads key binds from file
     /// </summary>
     public static void LoadKeys()
     {
-        // Change to a function call that returns a dict of the loaded keybinds
+        // Change to a function call that returns a dict of the loaded key binds
         // ie. from a JSON file
-        var keybinds = new Dictionary<string, string>();
-        foreach (var (k, v) in keybinds)
-        {
-            var key = PAFunctions.PlayerActionFromString(k);
-            var val = PAFunctions.KeyCodeFromString(v);
-            _keyBinds[key] = val;
-        }
+        var json = System.IO.File.ReadAllText(Application.persistentDataPath + "/" + FileName);
+        _keyBinds = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<PlayerAction, KeyCode>>(json);
     }
 
     /// <summary>
@@ -40,12 +37,12 @@ public static class PlayerControls
     }
 
     /// <summary>
-    /// TODO: Implement
     /// Saves the current key binds, to a JSON file.
     /// </summary>
     /// <exception cref="NotImplementedException"></exception>
     public static void SaveKeyBinds()
     {
-        throw new NotImplementedException();
+        var json = Newtonsoft.Json.JsonConvert.SerializeObject(_keyBinds);
+        System.IO.File.WriteAllText(Application.persistentDataPath + "/" + FileName, json);
     }
 }
