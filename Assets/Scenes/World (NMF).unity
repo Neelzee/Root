@@ -2132,7 +2132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fa722cfb0a36834eb06f161e1375732, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  worldSize: {x: 300, y: 300}
+  worldSize: {x: 50, y: 50}
   plainTileChance: 1
   lakeHeight: 2
   mountainHeight: 2
