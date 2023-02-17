@@ -23,7 +23,7 @@ public static class PlayerControls
         // Change to a function call that returns a dict of the loaded key binds
         // ie. from a JSON file
         var json = System.IO.File.ReadAllText(Application.persistentDataPath + "/" + FileName);
-        _keyBinds = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<PlayerAction, KeyCode>>(json);
+        _keyBinds = JsonUtility.FromJson<Dictionary<PlayerAction, KeyCode>>(json);
     }
 
     /// <summary>
@@ -42,7 +42,7 @@ public static class PlayerControls
     /// <exception cref="NotImplementedException"></exception>
     public static void SaveKeyBinds()
     {
-        var json = Newtonsoft.Json.JsonConvert.SerializeObject(_keyBinds);
+        var json = JsonUtility.ToJson(_keyBinds);
         System.IO.File.WriteAllText(Application.persistentDataPath + "/" + FileName, json);
     }
 }
