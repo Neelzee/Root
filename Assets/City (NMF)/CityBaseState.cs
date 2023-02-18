@@ -1,5 +1,9 @@
-using UnityEngine;
-
+/// <summary>
+/// Abstract CityState, all City States inherit from this class.
+/// <para>
+/// <c>Author: Nils Michael</c>
+/// </para>
+/// </summary>
 public abstract class CityBaseState
 {
     /// <summary>

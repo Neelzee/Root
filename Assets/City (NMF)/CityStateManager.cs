@@ -1,8 +1,13 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// City State Manager, ensures correct starting state is entered, upon city initialization,
+/// and that correct enter and exit methods are called when each state fulfill their requirements.
+/// <para>
+/// <c>Author: Nils Michael</c>
+/// </para>
+/// </summary>
+[RequireComponent(typeof(City))]
 public class CityStateManager : MonoBehaviour
 {
     private CityBaseState _currentState;
@@ -42,7 +47,7 @@ public class CityStateManager : MonoBehaviour
 	    _currentState.UpdateState(this, _city);
     }
 
-    private void SwitchState(CityBaseState state)
+    public void SwitchState(CityBaseState state)
     {
 	    _currentState.ExitState(this, _city);
 	    _currentState = state;
