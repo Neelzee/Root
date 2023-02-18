@@ -10,6 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4412382297361619795}
   - component: {fileID: 6136089372364513611}
+  - component: {fileID: 2563213461795853243}
+  - component: {fileID: 8468084356148259282}
+  - component: {fileID: 265937000494618787}
   m_Layer: 0
   m_Name: City
   m_TagString: Untagged
@@ -62,6 +65,45 @@ PolygonCollider2D:
       - {x: -0.5, y: 0}
       - {x: 0, y: -0.25}
       - {x: 0.5, y: 0}
+--- !u!114 &2563213461795853243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4412382297361619794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45c85633c1cb59f46a0146f98edc90ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8468084356148259282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4412382297361619794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45c85633c1cb59f46a0146f98edc90ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &265937000494618787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4412382297361619794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5660d4c8888116f46aec112ec76fc2a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cityId: 
+  cityPop: 0
+  tmPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &5255634095512807382
 GameObject:
   m_ObjectHideFlags: 0
