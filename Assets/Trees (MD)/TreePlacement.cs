@@ -18,6 +18,7 @@ public class TreePlacement : MonoBehaviour
     [SerializeField] private Tilemap highlightMap;
 
     [SerializeField] private Tile _highlight;
+    [SerializeField] private TreeUI treeUI;
 
     private void Start()
     {
@@ -114,9 +115,18 @@ public class TreePlacement : MonoBehaviour
         else
         {   
             // Checks if the player clicks on a tile with a tree
+            // Tree Selection System
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
+                highlightMap.SetTile(_lastCellPos, null);
                 GameObject selectedTree = CheckOccupied(cellPos);
+                if (selectedTree != null)
+                {
+                    _lastCellPos = cellPos;
+                    _highlight.color = Color.white;
+                    highlightMap.SetTile(cellPos, _highlight);   
+                }
+                treeUI.treeSelection(selectedTree);
             }
         }
     }
