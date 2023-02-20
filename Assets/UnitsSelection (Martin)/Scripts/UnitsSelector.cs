@@ -68,22 +68,25 @@ public class UnitsSelector : MonoBehaviour
             }
         }
 
-        // This code can be used for ordering units to move
-        // if (Input.GetMouseButtonDown(1))
-        // {
-        //     // Right Mouse Button Pressed
-        //     Vector3 moveToPosition = UtilsClass.GetMouseWorldPosition();
+        // Code for ordering units to move
+        if (Input.GetMouseButtonDown(1))
+        {
+            // Right Mouse Button Pressed
+            Vector3 moveToPosition = UtilsClass.GetMouseWorldPosition();
 
-        //     List<Vector3> targetPositionList = GetPositonListAround(moveToPosition, new float[] { 2f, 4f, 6f }, new int[] { 5, 10, 20 });
+            // Uncomment to use allow units to form formations around the destination
+            // List<Vector3> targetPositionList = GetPositonListAround(moveToPosition, new float[] { 2f, 4f, 6f }, new int[] { 3, 6, 12 });
+            // int targetPositionListIndex = 0;
 
-        //     int targetPositionListIndex = 0;
+            foreach (UnitRTS unitRTS in selectedUnitRTSList)
+            {
+                unitRTS.MoveTo(moveToPosition);
 
-        //     foreach (UnitRTS unitRTS in selectedUnitRTSList)
-        //     {
-        //         unitRTS.MoveTo(targetPositionList[targetPositionListIndex]);
-        //         targetPositionListIndex = (targetPositionListIndex + 1) % targetPositionList.Count;
-        //     }
-        // }
+                // Uncomment to use allow units to form formations around the destination
+                // unitRTS.MoveTo(targetPositionList[targetPositionListIndex]);
+                // targetPositionListIndex = (targetPositionListIndex + 1) % targetPositionList.Count;
+            }
+        }
 
     }
 

@@ -5,11 +5,11 @@ using UnityEngine;
 public class UnitRTS : MonoBehaviour {
 
     private GameObject selectedGameObject;
-    private IMovePosition movePosition;
+    private PlayerUnitMovement unitMovement;
 
     private void Awake() {
         selectedGameObject = transform.Find("Selected").gameObject;
-        movePosition = GetComponent<IMovePosition>();
+        unitMovement = GetComponent<PlayerUnitMovement>();
         SetSelectedVisible(false);
     }
 
@@ -17,9 +17,8 @@ public class UnitRTS : MonoBehaviour {
         selectedGameObject.SetActive(visible);
     }
 
-    // This code can be used when a unit is ordered to move
-    // public void MoveTo(Vector3 targetPosition) {
-    //     movePosition.SetMovePosition(targetPosition);
-    // }
+    public void MoveTo(Vector3 targetPosition) {
+        unitMovement.MoveTo(targetPosition);
+    }
 
 }
