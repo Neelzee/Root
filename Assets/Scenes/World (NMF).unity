@@ -2133,7 +2133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldSize: {x: 300, y: 300}
-  plainTileChance: 1
+  plainTileChance: 0.5
   lakeHeight: 2
   mountainHeight: 2
 --- !u!1 &1685463246
