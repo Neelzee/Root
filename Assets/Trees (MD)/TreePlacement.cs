@@ -42,6 +42,14 @@ public class TreePlacement : MonoBehaviour
         return null;
     }
     
+    /*
+     * Returns the info of the Tree which the user hovers and clicks on.
+     */
+    private TreeInfo SelectTree()
+    {
+        return null;
+    }
+    
     private void Update()
     {
         //Finds the mouse position and translate it

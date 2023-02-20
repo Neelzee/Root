@@ -22191,6 +22191,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1427874015}
   - component: {fileID: 1427874014}
+  - component: {fileID: 1427874016}
   m_Layer: 0
   m_Name: TreeManager
   m_TagString: Untagged
@@ -22229,6 +22230,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1427874016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1427874013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb7f45059b57b4f4d979d9b3d1ac0a35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  treeTilemap: {fileID: 277754624}
+  highlightMap: {fileID: 1458078620}
+  _highlight: {fileID: 11400000, guid: 99ab71cdd3133ef44ba739f493e36519, type: 2}
 --- !u!1 &1458078617
 GameObject:
   m_ObjectHideFlags: 0
@@ -23139,7 +23155,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1897326039
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23217,7 +23233,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1899542845
 RectTransform:
   m_ObjectHideFlags: 0
