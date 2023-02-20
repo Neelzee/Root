@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 public class TreeInfo : MonoBehaviour
 {
     [SerializeField] private Tile _forestTile;
-    [SerializeField] private List<>();
+    [SerializeField] private List<Environments> acceptedEnvironments = new List<Environments>();
 
     public Tile getTile()
     {
@@ -14,7 +14,7 @@ public class TreeInfo : MonoBehaviour
     }
 }
 
-public enum Habitable
+public enum Environments
 {
     Dry,
     Wet,
