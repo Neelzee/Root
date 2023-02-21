@@ -12,7 +12,7 @@ using UnityEngine;
 /// </summary>
 public class CityMilitaryOccupied : CityBaseState
 {
-	public override void EnterState(CityStateManager context, City city)
+	public override void EnterState(CityStateManager context, City city, object args)
 	{
 		
 	}
