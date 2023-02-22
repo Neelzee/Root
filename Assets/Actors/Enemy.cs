@@ -11,6 +11,12 @@ public class Enemy : Actor
     [Tooltip("How much Climate Awareness is increased if this unit is killed")]
     [SerializeField] protected float caValue;
     
+    [Header("Resistance")]
+    [Tooltip("Likelihood of this unit's death increasing Resistance")]
+    [SerializeField] protected float resIncrementChance;
+    [Tooltip("How much Resistance is increased if this unit is killed")]
+    [SerializeField] protected float resValue;
+    
     public override void TakeDamage(int damage)
     {
         CurrentHealth -= damage;
@@ -25,6 +31,11 @@ public class Enemy : Actor
         if (Random.Range(0, 100) / 100f < caIncrementChance)
         {
             ClimateAwareness.Add(caValue);
+        }
+        
+        if (Random.Range(0, 100) / 100f < resIncrementChance)
+        {
+            ClimateAwareness.Add(resValue);
         }
         Destroy(gameObject);
     }
