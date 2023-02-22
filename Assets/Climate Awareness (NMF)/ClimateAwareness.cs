@@ -28,10 +28,10 @@ public static class ClimateAwareness
     /// Scales the value based on the given percentage.
     /// </para>
     /// <para>
-    /// ScaleValue(.5f) -> CA val is increased with 50%
+    /// ScaleValue(1.5f) -> CA val is increased with 50%
     /// </para>
     /// <para>
-    /// ScaleValue(-0.5f) -> CA val is decreased with 50%
+    /// ScaleValue(0.5f) -> CA val is decreased with 50%
     /// </para>
     /// </summary>
     /// <param name="percentage"></param>

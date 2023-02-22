@@ -16,7 +16,20 @@ public class CityStealthTakeOver : CityBaseState
 	/// </summary>
 	private const float CityStealthTakeOverTime = 600f;
 
+	/// <summary>
+	/// How long it takes for Military help to arrive
+	/// </summary>
 	private const float CityMilitaryHelpTime = 1000f;
+	
+	/// <summary>
+	/// How much Climate Awareness is decreased with, every second
+	/// </summary>
+	private const float ClimateAwarenessDecrement = -.001f;
+
+	/// <summary>
+	/// How much Resistance is decreased with, every second
+	/// </summary>
+	private const float ResistanceDecrement = -0.01f;
 	
 	private float _time;
 	
@@ -28,6 +41,9 @@ public class CityStealthTakeOver : CityBaseState
 
 	public override void UpdateState(CityStateManager context, City city)
 	{
+		ClimateAwareness.Add(ClimateAwarenessDecrement * Time.deltaTime);
+		Resistance.Add(ResistanceDecrement * Time.deltaTime);
+		
 		_time += Time.deltaTime;
 
 		if (!city.IsStealthTakeOver)
