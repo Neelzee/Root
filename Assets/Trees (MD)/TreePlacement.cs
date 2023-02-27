@@ -88,6 +88,16 @@ public class TreePlacement : MonoBehaviour
                 if (CheckOccupied(cellPos) == null)
                 {
                     _currentTree.transform.position = tilemap.GetCellCenterWorld(cellPos);
+                    
+                    /*
+                     * TODO:
+                     * Change the line below, so that instead of calling to the .getTile() method,
+                     * TreeTiles.GetHeight(cellPos) is used instead.
+                     *
+                     * TODO:
+                     * Add TreeTiles to, either the GameObject that contains the script for TreePlacements,
+                     * or to a new GameObject. There should be only one TreeTile script for each scene
+                     */ 
                     tilemap.SetTile(cellPos, _currentTree.GetComponent<TreeInfo>().getTile());
                     _currentTree.name = "Tree: " + cellPos;
                     _currentTree.GetComponent<SpriteRenderer>().enabled = false;
