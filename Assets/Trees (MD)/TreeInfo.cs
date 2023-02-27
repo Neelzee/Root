@@ -8,12 +8,14 @@ public class TreeInfo : MonoBehaviour
     public string treeName;
     [SerializeField] private Tile _forestTile;
     [SerializeField] private List<Environments> acceptedEnvironments = new List<Environments>();
-
+    [SerializeField] private int cost;
+    
     public Tile getTile()
     {
         return _forestTile;
     }
 }
+
 
 public enum Environments
 {
