@@ -1,3 +1,5 @@
+using System;
+
 /// <summary>
 /// Abstract CityState, all City States inherit from this class.
 /// <para>
@@ -11,7 +13,7 @@ public abstract class CityBaseState
     /// </summary>
     /// <param name="context"></param>
     /// <param name="city"></param>
-    public abstract void EnterState(CityStateManager context, City city);
+    public abstract void EnterState(CityStateManager context, City city, Object args = null);
     
     /// <summary>
     /// Called every frame, in the Update function
