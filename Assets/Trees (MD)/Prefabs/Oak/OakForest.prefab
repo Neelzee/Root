@@ -98,7 +98,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64a342f93e8a8bf498c5077096da9f84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  treeName: Oak
   _forestTile: {fileID: 11400000, guid: 870634ee3a61acd4b9515a0cd3f600b7, type: 2}
+  acceptedEnvironments: 01000000050000000400000003000000
 --- !u!60 &-2401452383670869745
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -115,7 +117,7 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0.25, z: 0, w: 0.25}
-    pivot: {x: 0.5014666, y: 0.58359736}
+    pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
